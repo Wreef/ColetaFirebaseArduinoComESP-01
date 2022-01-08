@@ -234,10 +234,14 @@ void setup() {
 }
 
 void loop() {
-  
+
   vsData = String(Firebase.getInt("/Banco/Variável"));
   
-  Serial.println("O" + vsData + "K");
+  if (vsData.length() > 0)
+  {
+    Serial.println("O" + vsData + "K");
+  }
+  
   delay(15000);
 }
 ```
