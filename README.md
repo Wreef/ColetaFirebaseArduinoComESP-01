@@ -1,11 +1,14 @@
 ![logo](https://i.ibb.co/YthtbLh/Giifff-mid.gif)
 ***
 # Coleta de Dados do Firebase: Arduino com ESP-01
-Neste guia, você criará irá coletar dados do Firebase utilizando Arduino e o módulo WiFi ESP-01. Você aprenderá a filtrar e selecionar os dados corretos para a sua aplicação.
+Neste guia, você criará irá coletar dados do Firebase utilizando Arduino e o módulo WiFi ESP-01. Você aprenderá a filtrar e selecionar os dados corretos para a sua aplicação. Você irá aprender a criar um banco de dados no Firebase e a conectá-lo com seu projeto.
 ***
 ## Contextualização
-Iremos programar ESP-01 para coletar dados do Realtime Database do Firebase e enviar as informações via Serial para o Arduino. O Arduino, por sua vez, irá verificar se os dados estão completos. Após a verificação irá exibir as informações coerentes.
+Iremos programar ESP-01 para coletar informações de um banco de dados em tempo real do Firebase e enviar as informações via Serial para o Arduino. O Arduino, por sua vez, irá verificar se os dados estão completos. Após a verificação irá exibir as informações coerentes.
 > Muitas vezes, em projetos que utilizam WiFi, os dados acabam chegando corrompidos. Dependendo da importância do dado para o seu projeto, isso pode ser um grande problema. Por esse motivo, o Arduino irá verificar se o dado é consistente antes de imprimir no Display.
+
+## O que é Firebase?
+O Firebase de Google é uma plataforma digital utilizada para simplificar o desenvolvimento de aplicativos (web ou móveis), de forma efetiva, rápida e prática. Possui o Cloud Storage que é um ecurso que permite o armazenamento de arquivos na nuvem para que sejam compartilhados entre aplicativos.
 
 ## Requerimentos
 - Placa Arduino Uno;
@@ -17,6 +20,72 @@ Iremos programar ESP-01 para coletar dados do Realtime Database do Firebase e en
 ## Acessando o Firebase
 
 ## Biblioteca do Firebase para Arduino
+Para realizar o download da biblioteca acesse: https://github.com/FirebaseExtended/firebase-arduino
+
+No site vá em: Code > Download ZIP
+
+<p align="center">
+  <img src="https://i.ibb.co/qsQMkNg/gitlib.png" alt="fblib"/>
+</p>
+
+Em sua Arduino IDE vá em: Sketch > Incluir Biblioteca > Adicionar biblioteca .ZIP
+
+<p align="center">
+  <img src="https://i.ibb.co/GJPrPHX/addlib.png" alt="addlib"/>
+</p>
+
+Selecione o arquivo baixado e confirme.
+
+Para verificar se a biblioteca foi instalada, observe se há a biblioteca "FirebaseArduino" em: Sketch > Incluir Biblioteca
+
+<p align="center">
+  <img src="https://i.ibb.co/g4B3S8c/confirmlib.png" alt="confirmlib"/>
+</p>
+
+## Biblioteca ArduinoJson
+Em sua Arduino IDE vá em: Ferramentas > Gerenciar Bibliotecas
+
+<p align="center">
+  <img src="https://i.ibb.co/8z7HSPv/jsontool.png" alt="addJson"/>
+</p>
+
+Pesquise por "arduinojson", escolha a opção da imagem, a versão 5.13.5 e clique em "Instalar" (como eu já tinha instalado, não apareceu a opção "Instalar").
+
+<p align="center">
+  <img src="https://i.ibb.co/0h4q3SY/json.png" alt="addJson"/>
+</p>
+
+## Criando um Banco de Dados em Tempo Real no Firebase
+Para criar seu banco de dados acesse: https://firebase.google.com/
+
+> Lembre de criar uma conta no Google antes de começar.
+
+Na primeira tela você irá clicar em "Começar".
+
+<p align="center">
+  <img src="https://i.ibb.co/0VvbdJ9/firebase1.png" alt="firebase"/>
+</p>
+
+Na tela seguinte você irá clicar em "Criar um projeto".
+
+<p align="center">
+  <img src="https://i.ibb.co/MGsNvWx/firebase2.png" alt="firebase"/>
+</p>
+
+Na tela seguinte você irá dar um nome para o seu projeto. Aceite os termos e clique em "Continuar".
+
+<p align="center">
+  <img src="https://i.ibb.co/5ByZB7T/firebase3.png" alt="firebase"/>
+</p>
+
+> Ativar o Google Analytics é opcional. Recomendo não ativar no primeiro uso.
+
+Com o projeto criado é só clicar em "Continuar".
+
+<p align="center">
+  <img src="https://i.ibb.co/5sJLBg5/firebase4.png" alt="firebase"/>
+</p>
+
 
 ## Preparando a IDE do Arduino para utilizar o módulo ESP-01.
 Para programar o ESP-01 você pode utilizar adaptadores USB, porém neste guia iremos programar o ESP-01 diretamente do Arduino Uno, sem a necessidade de utilizar adaptadores.
