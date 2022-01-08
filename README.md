@@ -201,6 +201,49 @@ GPIO-0 | GND
   <img src="https://i.ibb.co/6DCrcsj/proj1-fim-esp.png" alt="7"/>
 </p>
 
+## Código do ESP-01
+
+```cpp
+#include <ESP8266WiFi.h>
+#include <FirebaseArduino.h>
+
+#define FIREBASE_HOST "SEU FIREBASE-HOST"
+#define FIREBASE_AUTH "SEU FIREBASE-AUTH"
+
+#define WIFI_SSID "SUA REDE WI-FI"
+#define WIFI_PASSWORD "SENHA  DA SUA REDE WI-FI"
+
+String vsData;
+
+void setup() {
+  
+  Serial.begin(9600);
+  delay(500);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting");
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.println(".");
+    delay(500);
+  }
+
+  Serial.println("Connected:");
+  Serial.println(WiFi.localIP());
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  delay(500);
+}
+
+void loop() {
+  
+  vsData = String(Firebase.getInt("/Banco/Variável"));
+  
+  Serial.println("O" + vsData + "K");
+  delay(15000);
+}
+```
+
+## Entendendo o Código do ESP-01
+
 ## Enviando o Código para o ESP-01
 Após realizar a montagem do esquema da imagem anterior, é necessário selecionar o módulo na IDE do Arduino.
 
@@ -211,10 +254,6 @@ Em sua Arduino IDE vá em: Ferramentas > Placa > ESP8266 Boards > Generic ESP826
 </p>
 
 Após selecionar o módulo ESP8266 é só enviar o código para o ESP-01.
-
-## Código do ESP-01
-
-## Entendendo o Código do ESP-01
 
 ## Esquema de Montagem Final
 
@@ -230,17 +269,6 @@ A11 | RX | -
 <p align="center">
   <img src="https://i.ibb.co/yg5Dkks/proj1-fim.png" alt="8"/>
 </p>
-
-## Enviando o Código para o Arduino
-Após realizar a montagem do esquema da imagem anterior, é necessário selecionar a placa Arduino Uno na IDE do Arduino.
-
-Em sua Arduino IDE vá em: Ferramentas > Placa > Arduino AVR Boards > Arduino Uno
-
-<p align="center">
-  <img src="https://i.ibb.co/y5hGgch/arduinouno.png" alt="10"/>
-</p>
-
-Após selecionar a placa Arduino Uno é só enviar o código.
 
 ## Código do Arduino
 
@@ -376,6 +404,17 @@ void loop() {
   delay(1000);
 }
 ```
+
+## Enviando o Código para o Arduino
+Após realizar a montagem do esquema da imagem anterior, é necessário selecionar a placa Arduino Uno na IDE do Arduino.
+
+Em sua Arduino IDE vá em: Ferramentas > Placa > Arduino AVR Boards > Arduino Uno
+
+<p align="center">
+  <img src="https://i.ibb.co/y5hGgch/arduinouno.png" alt="10"/>
+</p>
+
+Após selecionar a placa Arduino Uno é só enviar o código.
 
 ## Conclusão
 
