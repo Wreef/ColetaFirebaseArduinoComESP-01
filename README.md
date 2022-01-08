@@ -236,7 +236,7 @@ void setup() {
 
 void loop() {
 
-  String vsData = String(Firebase.getInt("/Banco/Variável"));
+  String vsData = String(Firebase.getInt("/Banco/Var"));
   
   if (vsData.length() > 0)
   {
@@ -317,7 +317,7 @@ void setup() {
 
 Na função loop é criado uma variável (vsData) que irá receber a informação do Firebase.
 
-> Note que em "Firebase.getInt("/Banco/Variável")" é escrito o caminho com os nomes do banco e da variável definidos anteriormente.
+> Note que em "Firebase.getInt("/Banco/Var")" é escrito o caminho com os nomes do banco e da variável definidos anteriormente.
 
 Logo em seguida é verificado se a informação possui algum caractere com a função "length()" (https://www.arduino.cc/reference/en/language/variables/data-types/string/functions/length/).
 
@@ -326,7 +326,7 @@ Em seguida é adicionado "O" no início e "K" no fim da informação para verifi
 ```cpp
 void loop() {
 
-  String vsData = String(Firebase.getInt("/Banco/Variável")); \\ Variável
+  String vsData = String(Firebase.getInt("/Banco/Var")); \\ Variável
   
   if (vsData.length() > 0) \\ Verificação
   {
