@@ -135,7 +135,7 @@ Após dar nome a variável e um valor para retornar, clique em "Adicionar".
 O banco de dados irá aparecer da seguinte forma:
 
 <p align="center">
-  <img src="https://i.ibb.co/QH68DS8/firebase13.png" alt="firebase"/>
+  <img src="https://i.ibb.co/R6LmDzb/corr2.png" alt="firebase"/>
 </p>
 
 ## Preparando a IDE do Arduino para utilizar o módulo ESP-01.
