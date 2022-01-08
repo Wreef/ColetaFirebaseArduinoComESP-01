@@ -86,6 +86,47 @@ Com o projeto criado é só clicar em "Continuar".
   <img src="https://i.ibb.co/5sJLBg5/firebase4.png" alt="firebase"/>
 </p>
 
+Agora iremos configurar o projeto. Vá em: Criação > Realtime Database
+
+<p align="center">
+  <img src="https://i.ibb.co/0XhqD5C/firebase6.png" alt="firebase"/>
+</p>
+
+Na tela seguinte clique em "Criar banco de dados".
+
+<p align="center">
+  <img src="https://i.ibb.co/StdBVy7/firebase7.png" alt="firebase"/>
+</p>
+
+Selecione "Estados unidos (us-central1)" e clique em "Próxima".
+
+<p align="center">
+  <img src="https://i.ibb.co/Gcyj8tf/firebase8.png" alt="firebase"/>
+</p>
+
+Selecione o 'modo de teste' e clique em 'Ativar" para iniciar o banco de dados.
+
+<p align="center">
+  <img src="https://i.ibb.co/K7m5s2V/firebase9.png" alt="firebase"/>
+</p>
+
+> Inicialmente eu recomendo o modo de teste, pois não necessita de configurações.
+
+Com o banco de dados criado, iremos montar uma estrutura simples para coletar informações. Clique no botão "+" para acrescentar o banco.
+
+<p align="center">
+  <img src="https://i.ibb.co/DCw6hPq/firebase10.png" alt="firebase"/>
+</p>
+
+Dê um nome ao banco e clique em "Adicionar".
+
+<p align="center">
+  <img src="https://i.ibb.co/NSc4yH6/firebase11.png" alt="firebase"/>
+</p>
+
+
+
+
 
 ## Preparando a IDE do Arduino para utilizar o módulo ESP-01.
 Para programar o ESP-01 você pode utilizar adaptadores USB, porém neste guia iremos programar o ESP-01 diretamente do Arduino Uno, sem a necessidade de utilizar adaptadores.
