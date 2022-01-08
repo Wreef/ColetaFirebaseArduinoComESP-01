@@ -509,5 +509,6 @@ Em sua Arduino IDE vá em: Ferramentas > Placa > Arduino AVR Boards > Arduino Un
 Após selecionar a placa Arduino Uno é só enviar o código.
 
 ## Conclusão
+Agora é só modificar os valores Firebase e visualizar no Display. Esse tipo de projeto é muito útil quando se deseja criar aplicativos de monitoramento ou tomar decisões a partir de um banco de dados que atualiza os dados em tempo real.
 
 # Obrigado(a)!
