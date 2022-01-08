@@ -129,7 +129,7 @@ Dê um nome ao banco e clique no sinal "+" ao lado para adicionar as variáveis.
 Após dar nome a variável e um valor para retornar, clique em "Adicionar".
 
 <p align="center">
-  <img src="https://i.ibb.co/hM06ytr/firebase12.png" alt="firebase"/>
+  <img src="https://i.ibb.co/h2y9M6c/corr1.png" alt="firebase"/>
 </p>
 
 O banco de dados irá aparecer da seguinte forma:
