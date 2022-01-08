@@ -22,6 +22,8 @@ O Firebase de Google é uma plataforma digital utilizada para simplificar o dese
 ## Biblioteca do Firebase para Arduino
 Para realizar o download da biblioteca acesse: https://github.com/FirebaseExtended/firebase-arduino
 
+> Para mais informações acesse: https://firebase-arduino.readthedocs.io/en/latest/
+
 No site vá em: Code > Download ZIP
 
 <p align="center">
@@ -213,7 +215,6 @@ GPIO-0 | GND
 #define WIFI_SSID "SUA REDE WI-FI"
 #define WIFI_PASSWORD "SENHA  DA SUA REDE WI-FI"
 
-String vsData;
 
 void setup() {
   
@@ -235,7 +236,7 @@ void setup() {
 
 void loop() {
 
-  vsData = String(Firebase.getInt("/Banco/Variável"));
+  String vsData = String(Firebase.getInt("/Banco/Variável"));
   
   if (vsData.length() > 0)
   {
@@ -247,6 +248,94 @@ void loop() {
 ```
 
 ## Entendendo o Código do ESP-01
+Inicialmente as bibliotecas de WiFi e Firebase são importadas.
+
+```cpp
+#include <ESP8266WiFi.h>
+#include <FirebaseArduino.h>
+```
+
+Em seguida é necessário definir o link (FIREBASE_HOST) e a chave (FIREBASE_AUTH) do seu banco de dados.
+
+```cpp
+#define FIREBASE_HOST "SEU FIREBASE-HOST"
+#define FIREBASE_AUTH "SEU FIREBASE-AUTH"
+```
+
+Para encontrar o link você deve clicar em "Realtime Database" e copiar um link semelhante ao da imagem a seguir.
+
+<p align="center">
+  <img src="https://i.ibb.co/9rwtn7b/firebase02.png" alt="fireb"/>
+</p>
+
+> É importante lembrar de remover o "https://" do início e o "/" do fim do link. Ex: "fir-arduino-5cfb7-default-rtdb.firebaseio.com"
+
+Para encontrar a chave você deve ir na engrenagem que fica no canto superior esquerdo e clicar em "Usuários e permissões".
+
+<p align="center">
+  <img src="https://i.ibb.co/pxwQ5nv/firebase01.png" alt="fireb"/>
+</p>
+
+Em seguida ir em: Contas de serviço > Chaves secretas do banco de dados
+
+No fim da página clique em "Mostrar" e copie o código.
+
+<p align="center">
+  <img src="https://i.ibb.co/F3TF5fL/firebase03.png" alt="fireb"/>
+</p>
+
+Nessa parte do código é necessário definir o nome (WIFI_SSID) e a senha (WIFI_PASSWORD) da sua rede Wi-Fi.
+
+```cpp
+#define WIFI_SSID "SUA REDE WI-FI"
+#define WIFI_PASSWORD "SENHA  DA SUA REDE WI-FI"
+```
+
+Na função setup a comunicação Serial é iniciada e são realizadas as conexões WiFi e Firebase.
+
+```cpp
+void setup() {
+  
+  Serial.begin(9600); \\ Comunicação Serial
+  delay(500);
+  
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD); \\ Comunicação WiFi
+  Serial.print("Connecting");
+  
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.println(".");
+    delay(500);
+  }
+
+  Serial.println("Connected:");
+  Serial.println(WiFi.localIP());
+  
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH); \\ Comunicação com o Firebase
+  delay(500);
+}
+```
+
+Na função loop é criado uma variável (vsData) que irá receber a informação do Firebase.
+
+> Note que em "Firebase.getInt("/Banco/Variável")" é escrito o caminho com os nomes do banco e da variável definidos anteriormente.
+
+Logo em seguida é verificado se a informação possui algum caractere com a função "length()" (https://www.arduino.cc/reference/en/language/variables/data-types/string/functions/length/).
+
+Em seguida é adicionado "O" no início e "K" no fim da informação para verificação do arduino.
+
+```cpp
+void loop() {
+
+  String vsData = String(Firebase.getInt("/Banco/Variável")); \\ Variável
+  
+  if (vsData.length() > 0) \\ Verificação
+  {
+    Serial.println("O" + vsData + "K"); \\ Caracteres para verificação do Arduino
+  }
+  
+  delay(15000);
+}
+```
 
 ## Enviando o Código para o ESP-01
 Após realizar a montagem do esquema da imagem anterior, é necessário selecionar o módulo na IDE do Arduino.
@@ -367,7 +456,7 @@ void setup() {
     for(;;);
   }
 
-  display.clearDisplay();
+  display.clearDisplay(); \\ Escrevendo no Display
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 16);
@@ -398,7 +487,7 @@ void loop() {
     if (vsData.startsWith("O") && vsData.endsWith("K\r\n"))
     {
       vsData = vsData.substring(1, (vsData.length() - 3));
-      display.clearDisplay();
+      display.clearDisplay(); \\ Escrevendo no Display
       display.setCursor(0,16);
       display.print("Dado recebido: " + vsData);
       display.display();
