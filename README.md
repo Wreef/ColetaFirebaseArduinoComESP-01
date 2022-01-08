@@ -513,5 +513,5 @@ Agora é só modificar os valores Firebase e visualizar no Display. Esse tipo de
 
 # Obrigado(a)!
 <p align="center">
-  <img src="https://i.ibb.co/09f12gG/ezgif-com-gif-maker-1.gif" alt="12"/>
+  <img src="https://i.ibb.co/3McX2Dt/ezgif-com-gif-maker.gif" alt="12"/>
 </p>
