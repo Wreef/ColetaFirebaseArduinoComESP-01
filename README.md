@@ -265,7 +265,7 @@ Em seguida é necessário definir o link (FIREBASE_HOST) e a chave (FIREBASE_AUT
 Para encontrar o link você deve clicar em "Realtime Database" e copiar um link semelhante ao da imagem a seguir.
 
 <p align="center">
-  <img src="https://i.ibb.co/9rwtn7b/firebase02.png" alt="fireb"/>
+  <img src="https://i.ibb.co/cy4w0Vv/corr2.png" alt="fireb"/>
 </p>
 
 > É importante lembrar de remover o "https://" do início e o "/" do fim do link. Ex: "fir-arduino-5cfb7-default-rtdb.firebaseio.com"
