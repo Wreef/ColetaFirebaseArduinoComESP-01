@@ -1,14 +1,14 @@
 ![logo](https://i.ibb.co/YthtbLh/Giifff-mid.gif)
 ***
 # Coleta de Dados do Firebase: Arduino com ESP-01
-Neste guia, você criará irá coletar dados do Firebase utilizando Arduino e o módulo WiFi ESP-01. Você aprenderá a filtrar e selecionar os dados corretos para a sua aplicação. Você irá aprender a criar um banco de dados no Firebase e a conectá-lo com seu projeto.
+Neste guia, você criará uma coleta dados do Firebase utilizando Arduino e o módulo WiFi ESP-01. Você aprenderá a filtrar e selecionar os dados corretos para a sua aplicação. Você irá aprender a criar um banco de dados no Firebase e a conectá-lo com seu projeto.
 ***
 ## Contextualização
 Iremos programar ESP-01 para coletar informações de um banco de dados em tempo real do Firebase e enviar as informações via Serial para o Arduino. O Arduino, por sua vez, irá verificar se os dados estão completos. Após a verificação irá exibir as informações coerentes.
 > Muitas vezes, em projetos que utilizam WiFi, os dados acabam chegando corrompidos. Dependendo da importância do dado para o seu projeto, isso pode ser um grande problema. Por esse motivo, o Arduino irá verificar se o dado é consistente antes de imprimir no Display.
 
 ## O que é Firebase?
-O Firebase de Google é uma plataforma digital utilizada para simplificar o desenvolvimento de aplicativos (web ou móveis), de forma efetiva, rápida e prática. Possui o Cloud Storage que é um ecurso que permite o armazenamento de arquivos na nuvem para que sejam compartilhados entre aplicativos.
+O Firebase do Google é uma plataforma digital utilizada para simplificar o desenvolvimento de aplicativos (web ou móveis), de forma efetiva, rápida e prática. Possui o Cloud Storage que é um recurso que permite o armazenamento de arquivos na nuvem para que sejam compartilhados entre aplicativos.
 
 ## Requerimentos
 - Placa Arduino Uno;
@@ -16,8 +16,6 @@ O Firebase de Google é uma plataforma digital utilizada para simplificar o dese
 - Adaptador para 5V do ESP-01 (https://www.robocore.net/placa-robocore/adaptador-para-esp8266);
 - Display OLED (usei um de 128x32);
 - Jumpers para conexão de componentes.
-
-## Acessando o Firebase
 
 ## Biblioteca do Firebase para Arduino
 Para realizar o download da biblioteca acesse: https://github.com/FirebaseExtended/firebase-arduino
@@ -221,14 +219,14 @@ void setup() {
   Serial.begin(9600);
   delay(500);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("Connecting");
+  Serial.print("Conectando");
   
   while (WiFi.status() != WL_CONNECTED) {
     Serial.println(".");
     delay(500);
   }
 
-  Serial.println("Connected:");
+  Serial.println("Conectado:");
   Serial.println(WiFi.localIP());
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
   delay(500);
@@ -296,21 +294,21 @@ Na função setup a comunicação Serial é iniciada e são realizadas as conex�
 ```cpp
 void setup() {
   
-  Serial.begin(9600); \\ Comunicação Serial
+  Serial.begin(9600); // Comunicação Serial
   delay(500);
   
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD); \\ Comunicação WiFi
-  Serial.print("Connecting");
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD); // Comunicação WiFi
+  Serial.print("Conectando");
   
   while (WiFi.status() != WL_CONNECTED) {
     Serial.println(".");
     delay(500);
   }
 
-  Serial.println("Connected:");
+  Serial.println("Conectado:");
   Serial.println(WiFi.localIP());
   
-  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH); \\ Comunicação com o Firebase
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH); // Comunicação com o Firebase
   delay(500);
 }
 ```
@@ -318,19 +316,20 @@ void setup() {
 Na função loop é criado uma variável (vsData) que irá receber a informação do Firebase.
 
 > Note que em "Firebase.getInt("/Banco/Var")" é escrito o caminho com os nomes do banco e da variável definidos anteriormente.
+> Lembre de nunca usar acentuação no Firebase, ex: "/Banco/Variável".
 
 Logo em seguida é verificado se a informação possui algum caractere com a função "length()" (https://www.arduino.cc/reference/en/language/variables/data-types/string/functions/length/).
 
-Em seguida é adicionado "O" no início e "K" no fim da informação para verificação do arduino.
+E por fim é adicionado "O" no início e "K" no fim da informação para verificação do arduino.
 
 ```cpp
 void loop() {
 
-  String vsData = String(Firebase.getInt("/Banco/Var")); \\ Variável
+  String vsData = String(Firebase.getInt("/Banco/Var")); // Variável
   
-  if (vsData.length() > 0) \\ Verificação
+  if (vsData.length() > 0) // Verificação
   {
-    Serial.println("O" + vsData + "K"); \\ Caracteres para verificação do Arduino
+    Serial.println("O" + vsData + "K"); // Caracteres para verificação do Arduino
   }
   
   delay(15000);
@@ -338,7 +337,7 @@ void loop() {
 ```
 
 ## Enviando o Código para o ESP-01
-Após realizar a montagem do esquema da imagem anterior, é necessário selecionar o módulo na IDE do Arduino.
+Após realizar a montagem do esquema anterior, é necessário selecionar o módulo na IDE do Arduino.
 
 Em sua Arduino IDE vá em: Ferramentas > Placa > ESP8266 Boards > Generic ESP8266 Module
 
@@ -456,7 +455,7 @@ void setup() {
     for(;;);
   }
 
-  display.clearDisplay(); \\ Escrevendo no Display
+  display.clearDisplay(); // Escrevendo no Display
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 16);
@@ -487,7 +486,7 @@ void loop() {
     if (vsData.startsWith("O") && vsData.endsWith("K\r\n"))
     {
       vsData = vsData.substring(1, (vsData.length() - 3));
-      display.clearDisplay(); \\ Escrevendo no Display
+      display.clearDisplay(); // Escrevendo no Display
       display.setCursor(0,16);
       display.print("Dado recebido: " + vsData);
       display.display();
