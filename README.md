@@ -118,15 +118,23 @@ Com o banco de dados criado, iremos montar uma estrutura simples para coletar in
   <img src="https://i.ibb.co/DCw6hPq/firebase10.png" alt="firebase"/>
 </p>
 
-Dê um nome ao banco e clique em "Adicionar".
+Dê um nome ao banco e clique no sinal "+" ao lado para adicionar as variáveis.
 
 <p align="center">
-  <img src="https://i.ibb.co/NSc4yH6/firebase11.png" alt="firebase"/>
+  <img src="https://i.ibb.co/bXzkGKc/firebase11.png" alt="firebase"/>
 </p>
 
+Após dar nome a variável e um valor para retornar, clique em "Adicionar".
 
+<p align="center">
+  <img src="https://i.ibb.co/hM06ytr/firebase12.png" alt="firebase"/>
+</p>
 
+O banco de dados irá aparecer da seguinte forma:
 
+<p align="center">
+  <img src="https://i.ibb.co/QH68DS8/firebase13.png" alt="firebase"/>
+</p>
 
 ## Preparando a IDE do Arduino para utilizar o módulo ESP-01.
 Para programar o ESP-01 você pode utilizar adaptadores USB, porém neste guia iremos programar o ESP-01 diretamente do Arduino Uno, sem a necessidade de utilizar adaptadores.
