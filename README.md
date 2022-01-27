@@ -355,8 +355,8 @@ Arduino | Adaptador ESP-01 | Display OLED
 GND | GND | GND
 A4 | - | SDA
 A5 | - | SDK
-A10 | TX | -
-A11 | RX | -
+10 | TX | -
+11 | RX | -
 
 <p align="center">
   <img src="https://i.ibb.co/yg5Dkks/proj1-fim.png" alt="8"/>
